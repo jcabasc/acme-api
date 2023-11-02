@@ -6,6 +6,7 @@ RSpec.describe TestsController do
   describe 'GET /tests' do
     let(:user) { User.create }
     let(:headers) { { 'user-id' => user.id } }
+    let(:blocked_user_key) { "id_#{user.id}" }
 
     context 'when hits are below the threshold' do
       subject(:make_request) { get '/tests', headers: }
@@ -27,7 +28,7 @@ RSpec.describe TestsController do
       subject(:make_request) { get '/tests', headers: }
 
       before do
-        allow_any_instance_of(User).to receive(:count_hits).and_return(Hit::MONTHLY_THRESHOLD)
+        $redis.set(blocked_user_key, 1)
       end
 
       it 'returns ok status code' do
