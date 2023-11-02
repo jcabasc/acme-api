@@ -6,6 +6,6 @@ class ApplicationController < ActionController::API
   end
 
   def user_quota
-    render json: { error: 'over quota' } if current_user.count_hits >= 10000
+    render json: { error: 'over quota' } if current_user.count_hits >= Hit::MONTHLY_THRESHOLD
   end
 end
