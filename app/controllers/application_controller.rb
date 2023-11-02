@@ -2,7 +2,7 @@ class ApplicationController < ActionController::API
   before_action :user_quota
 
   def current_user
-    @current_user ||= User.find(request.headers["user-id"])
+    @current_user ||= User.includes(:hits).find(request.headers["user-id"])
   end
 
   def user_quota
