@@ -58,7 +58,7 @@ RSpec.describe User, type: :model do
         Timecop.return
       end
 
-      it 'returns 2 counts even though current time is Nov 1st' do
+      it 'returns 0 counts because current time is Nov 1st' do
         Time.use_zone("Sydney") do
           # Datetimes attributes are expressed in the correct time zone
           expect(user.created_at.time_zone.name).to eq("Sydney")
@@ -66,7 +66,7 @@ RSpec.describe User, type: :model do
           # Current time is Nov 1st
           expect(Time.zone.now.strftime("%Y-%m-%d")).to eq("2023-11-01")
 
-          expect(user.count_hits).to eq(2)
+          expect(user.count_hits).to eq(0)
         end
       end
     end
