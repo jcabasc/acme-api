@@ -4,6 +4,9 @@
 #
 # Example:
 #
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
+  time_zones = ['Bogota', 'Sydney', 'Mountain Time (US & Canada)']
+
+  time_zones.each do |time_zone|
+    user =  User.find_or_create_by!(time_zone: time_zone)
+    puts "User found/created in time zone #{time_zone} with ID: #{user.id}"
+  end

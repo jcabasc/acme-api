@@ -1,24 +1,72 @@
-# README
+Acme API
+===================
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rails API application.
 
-Things you may want to cover:
+Developed by: `Jonathan Cabas Candama`
 
-* Ruby version
+# Requirements
 
-* System dependencies
+* Ruby 3.2.2
+* Rails 7.1.1
+* Postgres
+* Redis 5.0.8
 
-* Configuration
+# Setting up Database
 
-* Database creation
+Run the following to setup rails db
 
-* Database initialization
+```sh
+  $ rails db:setup
+  $ rails db:migrate
+  $ rails db:seed
+```
 
-* How to run the test suite
+# Getting Started
 
-* Services (job queues, cache servers, search engines, etc.)
+The following services need to be up and running.
 
-* Deployment instructions
+```sh
+  $ rails s -p 5001 (Runs rails server on port 5001)
+  $ redis-server & (Runs redis as a backgroung process)
+```
 
-* ...
+# Testing
+
+The testing framework used is `RSpec`
+
+Run the following command to run the test suite:
+
+``
+  $ rspec spec
+``
+
+# Endpoints Documentation
+
+### API response below threshold
+
+```sh
+
+    GET http://localhost:5001/tests
+    Headers: 'user-id:{user_id}'
+
+    Response status: 200 OK
+    Response body:
+    {
+      "success": "This is fine!"
+    }
+```
+
+### API response above threshold
+
+```sh
+
+    GET http://localhost:5001/tests
+    Headers: 'user-id:{user_id}'
+
+    Response status: 200 OK
+    Response body:
+    {
+      "error": "over quota"
+    }
+```
