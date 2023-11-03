@@ -4,7 +4,7 @@ class TestsController < ApplicationController
   before_action :log_hit
 
   def index
-    render status: :ok, plain: 'You are welcome!'
+    render json: { success: 'This is fine!' }
   end
 
   private

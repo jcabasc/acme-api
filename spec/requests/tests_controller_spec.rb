@@ -17,10 +17,10 @@ RSpec.describe TestsController do
         expect(response).to have_http_status(:ok)
       end
 
-      it 'returns a successfull plain message' do
+      it 'returns a successfull message' do
         make_request
 
-        expect(response.body).to eq('You are welcome!')
+        expect(JSON.parse(response.body)['success']).to eq('This is fine!')
       end
     end
 
